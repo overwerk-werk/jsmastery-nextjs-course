@@ -1,3 +1,4 @@
+import HomeFilter from "@/components/filters/HomeFilter"
 import LocalSearch from "@/components/search/LocalSearch"
 import { Button } from "@/components/ui/button"
 import ROUTES from "@/constants/routes"
@@ -34,12 +35,19 @@ const questions = [
 
 const Home = async ({searchParams}: SearchParams) => {
 
-  const {query = ""} = await searchParams;
+  const {query = "", filter = ""} = await searchParams;
 
-  const fileteredQuestions = questions.filter(
-    (question) => 
-      question.title.toLowerCase().includes(query?.toLowerCase())
+  const fileteredQuestions = questions.filter((question) => {
+    const matchesQuery = question.title.toLowerCase().includes(query?.toLowerCase())
+
+    const matchesFilter = filter 
+    ? question.tags[0].name.toLowerCase() === filter.toLowerCase() : true;
+
+    return matchesQuery && matchesFilter;
+  }
   );
+
+  
 
   return (
     <>
@@ -61,13 +69,13 @@ const Home = async ({searchParams}: SearchParams) => {
       
       />
     </section>
-    HomeFilter
+    <HomeFilter />
     <div className="mt-10 flex w-full flex-col gap-6">
       {fileteredQuestions.map((questions) => (
         <h1 key={questions._id}>{questions.title}</h1>
       ))}
     </div>
-    </>
+  </>
   )
 }
 
