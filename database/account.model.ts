@@ -20,6 +20,6 @@ const AccountSchema = new Schema<IAccount>({
     providerAccountId: {type: String, required: true  },
 }, { timestamps: true });
 
-const Acount = models?.Account || model<IAccount>("Acount", AccountSchema);
+const Account = models?.Account || model<IAccount>("Account", AccountSchema);
 
-export default Acount;
+export default Account;
