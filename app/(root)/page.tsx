@@ -3,6 +3,7 @@ import HomeFilter from "@/components/filters/HomeFilter"
 import LocalSearch from "@/components/search/LocalSearch"
 import { Button } from "@/components/ui/button"
 import ROUTES from "@/constants/routes"
+import handleError from "@/lib/handlers/errors"
 import { SearchParams } from "next/dist/server/request/search-params"
 import Link from "next/link"
 
@@ -29,6 +30,7 @@ const questions = [
       createdAt: new Date("2025-08-03"),
     },
   ]
+
 
   interface searchParams {
     searchParams: Promise <{ [key: string]: string}>
