@@ -4,6 +4,7 @@ import LocalSearch from "@/components/search/LocalSearch"
 import { Button } from "@/components/ui/button"
 import ROUTES from "@/constants/routes"
 import handleError from "@/lib/handlers/errors"
+import dbConnect from "@/lib/mongoose"// 
 import { SearchParams } from "next/dist/server/request/search-params"
 import Link from "next/link"
 
@@ -31,12 +32,21 @@ const questions = [
     },
   ]
 
+const testError = async () => {
+  try {
+    await dbConnect();
+
+  } catch (error){
+    return handleError(error);
+  }
+}
 
   interface searchParams {
     searchParams: Promise <{ [key: string]: string}>
   }
 
 const Home = async ({searchParams}: SearchParams) => {
+  await testError();
 
   const {query = "", filter = ""} = await searchParams;
 
