@@ -6,6 +6,7 @@ import { AccountSchema } from "@/lib/validation";
 import { APIErrorResponse } from "@/types/global";
 import { NextResponse } from "next/server";
 
+
 export async function GET() {
   try {
     await dbConnect();

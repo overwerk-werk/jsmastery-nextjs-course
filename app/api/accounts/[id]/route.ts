@@ -14,7 +14,7 @@ export async function GET(_: Request, { params }: { params: Promise< { id: strin
         await dbConnect();
         
         const account = await Account.findById(id);
-        if (!account) throw new NotFoundError("User");
+        if (!account) throw new NotFoundError("Account");
 
         return NextResponse.json({ success: true, data: account }, { status: 201 })
 
